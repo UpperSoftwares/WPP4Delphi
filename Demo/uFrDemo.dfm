@@ -1682,15 +1682,6 @@ object frDemo: TfrDemo
             Height = 264
             ExplicitHeight = 264
           end
-          inherited lblCaminhoImagem: TLabel
-            Width = 229
-          end
-        end
-        inherited tsBase64: TTabSheet
-          ExplicitLeft = 4
-          ExplicitTop = 26
-          ExplicitWidth = 229
-          ExplicitHeight = 191
         end
       end
     end
@@ -1829,9 +1820,6 @@ object frDemo: TfrDemo
       Width = 118
       ExplicitLeft = 5
       ExplicitWidth = 118
-    end
-    inherited rgTipoLogin: TRadioGroup
-      ItemIndex = 1
     end
   end
   inline frameCatalogo1: TframeCatalogo
@@ -2032,6 +2020,9 @@ object frDemo: TfrDemo
         inherited gbacoes: TGroupBox
           Height = 411
           ExplicitHeight = 411
+          inherited btnMsgAll: TButton
+            OnClick = frameComunidades1btnMsgAllClick
+          end
         end
       end
       inherited pnlEsquerda: TPanel
@@ -2044,6 +2035,10 @@ object frDemo: TfrDemo
           inherited btnCriarGrupo: TBitBtn
             OnClick = frameComunidades1btnCriarGrupoClick
           end
+        end
+        inherited Memo1: TMemo
+          Left = 92
+          ExplicitLeft = 92
         end
       end
       inherited pnlGruposParticipantes: TPanel
@@ -5679,18 +5674,22 @@ object frDemo: TfrDemo
       'n/Source/JS/js.abr'
     InjectJS.SecondsWaitInject = 4
     Config.AutoStart = True
-    Config.AutoDelay = 1000
-    Config.SecondsMonitor = 5
+    Config.AutoDelay = 500
+    Config.SecondsMonitor = 1
+    Config.Evento_msg_revoke = True
+    Config.Evento_new_reaction = True
     AjustNumber.LengthPhone = 8
     AjustNumber.DDIDefault = 55
     FormQrCodeType = Ft_Http
     OnGetAllContactList = TWPPConnect1GetAllContactList
+    OnGetMyContactsList = TWPPConnect1GetMyContactsList
     OnGetAllGroupList = TWPPConnect1GetAllGroupList
     OnGetAllCommunitys = TWPPConnect1GetAllCommunitys
     OnGetAllGroupAdmins = TWPPConnect1GetAllGroupAdmins
     OnGetQrCode = TWPPConnect1GetQrCode
     OnGetChatList = TWPPConnect1GetChatList
     OnGetUnReadMessages = TWPPConnect1GetUnReadMessages
+    OnGetMessages = TWPPConnect1GetMessages
     OnGetAllGroupContacts = TWPPConnect1GetAllGroupContacts
     OnGetStatus = TWPPConnect1GetStatus
     OnGetMessageById = TWPPConnect1GetMessageById
@@ -5708,6 +5707,10 @@ object frDemo: TfrDemo
     OnGetIsReady = TWPPConnect1GetIsReady
     OnGetIsLoaded = TWPPConnect1GetIsLoaded
     OnGetIsAuthenticated = TWPPConnect1GetIsAuthenticated
+    OnGetIsOnline = TWPPConnect1GetIsOnline
+    OnGetEnvIsOnline = TWPPConnect1GetEnvIsOnline
+    OnGetListChat = TWPPConnect1GetListChat
+    OnGetMessageACK = TWPPConnect1GetMessageACK
     OnGetCheckIsValidNumber = TWPPConnect1GetCheckIsValidNumber
     OnGetProfilePicThumb = TWPPConnect1GetProfilePicThumb
     OnGetMyNumber = TWPPConnect1GetMyNumber
@@ -5722,6 +5725,16 @@ object frDemo: TfrDemo
     OnCheckNumberExists = TWPPConnect1CheckNumberExists
     OnGetLastSeen = TWPPConnect1GetLastSeen
     OnGetPlatformFromMessage = TWPPConnect1GetPlatformFromMessage
+    OnGetPoolResponse = TWPPConnect1GetPoolResponse
+    OnGetPoolResponseEvento = TWPPConnect1GetPoolResponseEvento
+    OnGetReactResponseEvento = TWPPConnect1GetReactResponseEvento
+    OnGetNewMessageResponseEvento = TWPPConnect1GetNewMessageResponseEvento
+    OnGet_SendPollMessageResponse = TWPPConnect1Get_SendPollMessageResponse
+    OnGetAck_changeEvento = TWPPConnect1GetAck_changeEvento
+    OnGetmsg_revokeEvento = TWPPConnect1Getmsg_revokeEvento
+    OnGetTotalChatsUserRead = TWPPConnect1GetTotalChatsUserRead
+    OnGetWAVersion = TWPPConnect1GetWAVersion
+    OnGetgenLinkDeviceCodeForPhoneNumber = TWPPConnect1GetgenLinkDeviceCodeForPhoneNumber
     OnGetHistorySyncProgress = TWPPConnect1GetHistorySyncProgress
     OnGetQrCodeDesconectouErroCache = TWPPConnect1GetQrCodeDesconectouErroCache
     Left = 288
@@ -5759,5 +5772,11 @@ object frDemo: TfrDemo
     OnTimer = TimerRestauraPastaCacheTimer
     Left = 872
     Top = 8
+  end
+  object TimerProgress: TTimer
+    Enabled = False
+    OnTimer = TimerProgressTimer
+    Left = 848
+    Top = 168
   end
 end
